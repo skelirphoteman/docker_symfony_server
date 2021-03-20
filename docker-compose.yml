@@ -1,0 +1,69 @@
+version: '3'
+
+networks:
+  symfony:
+services:
+  php-symfony-app:
+    build:
+      context: ./php/
+      dockerfile: Dockerfile
+    container_name: php-symfony-app
+    networks:
+      - symfony
+    volumes:
+      - $PWD/www/:/var/www/
+    depends_on:
+      - mysql-symfony-app
+    working_dir: /var/www
+  nginx-symfony-app:
+    image: nginx
+    container_name: nginx-symfony-app
+    networks:
+      - symfony
+    volumes:
+      - $PWD/nginx/:/etc/nginx/conf.d/
+      - $PWD/www/:/var/www/
+    ports:
+      - '5000:80'
+    depends_on:
+      - php-symfony-app
+  mysql-symfony-app:
+    image: mysql
+    container_name: mysql-symfony-app
+    ports:
+      - '5002:3306'
+    env_file: .env
+    command:
+      - "--default-authentication-plugin=mysql_native_password"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - $PWD/mysql/:/var/lib/mysql/
+    networks:
+      - symfony
+  composer-symfony-app:
+    image: composer
+    container_name: php-composer-symfony-app
+    volumes:
+      - $PWD/www/:/var/www/
+    tty: true
+    command: ['/bin/bash']
+    networks:
+      - symfony  
+    working_dir: /var/www/
+    depends_on:
+      - php-symfony-app
+  encore-symfony-app:
+    container_name: encore-symfony-app
+    networks:
+      - symfony
+    volumes:
+      - $PWD/www/:/usr/src/app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /usr/src/app/
+    command: ["yarn", "run", "dev"]
