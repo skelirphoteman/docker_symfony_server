@@ -20,10 +20,10 @@ Docker et docker-compose.
 ## Installation 
 Pour installer cette environnement de développement, veuillez suivre les indications ci-dessous :
 
-'''
+```
 git init
 git clone https://github.com/skelirphoteman/docker_symfony_server.git
-'''
+```
 
 Vous pouvez modifier les variables d'environnement dans le dossier .env .
 N'oubliez pas de modifier aussi les informations dans le fichier www/.env pour doctrine.
