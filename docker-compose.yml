@@ -61,7 +61,7 @@ services:
     networks:
       - symfony
     volumes:
-      - $PWD/www/:/usr/src/app
+      - $PWD/www/:/usr/src/app/
     build:
       context: ./node/
       dockerfile: Dockerfile
