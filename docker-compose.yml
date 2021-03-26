@@ -56,3 +56,14 @@ services:
     working_dir: /var/www/
     depends_on:
       - php-symfony-app
+  encore-symfony-app:
+    container_name: encore-symfony-app
+    networks:
+      - symfony
+    volumes:
+      - $PWD/www/:/usr/src/app
+    build:
+      context: ./node/
+      dockerfile: Dockerfile
+    working_dir: /usr/src/app/
+    command: ["yarn", "run", "dev"]
