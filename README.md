@@ -31,3 +31,18 @@ N'oubliez pas de modifier aussi les informations dans le fichier www/.env pour d
 Vous pourrez ensuite lancé docker-compose
 
 > docker-compose up --build
+
+## Structure
+La structure du code fonctionne sous 4 dossiers qui se complémentent avec des fonctions bien définit.
+
+# Command
+Regroupe toutes les commandes personnalisé utilisable dans la console symfony.
+
+#Domain
+Contient toute la logique de l'application. Il stock toutes les entitées, les répositories et tous ce qui doit fonctionner indépendemment de la couche Http.
+
+#Http
+Regroupe toutes les classes qui permet de gérer les couches HTTP (Controller)
+
+#Infrastructure
+Définit des outils permettant de communiquer avec les éléments interne de l'application.
