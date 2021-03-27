@@ -1,4 +1,4 @@
-### Version Française
+# Version Française
 ## Présentation
 Premier vrai projet que je publie sur Github. J'aimerais partager moi aussi mon expérience et commencé à créer divers petits outils permettant de gagner du temps. 
 
@@ -35,14 +35,14 @@ Vous pourrez ensuite lancé docker-compose
 ## Structure
 La structure du code fonctionne sous 4 dossiers qui se complémentent avec des fonctions bien définit.
 
-# Command
+### Command
 Regroupe toutes les commandes personnalisé utilisable dans la console symfony.
 
-#Domain
+### Domain
 Contient toute la logique de l'application. Il stock toutes les entitées, les répositories et tous ce qui doit fonctionner indépendemment de la couche Http.
 
-#Http
+### Http
 Regroupe toutes les classes qui permet de gérer les couches HTTP (Controller)
 
-#Infrastructure
+### Infrastructure
 Définit des outils permettant de communiquer avec les éléments interne de l'application.
